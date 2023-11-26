@@ -22,6 +22,7 @@ import ru.skypro.homework.repository.CommentRepository;
 import ru.skypro.homework.repository.PhotoAdRepository;
 import ru.skypro.homework.repository.UserRepository;
 import ru.skypro.homework.service.AdService;
+import ru.skypro.homework.utils.MethodLog;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -29,6 +30,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
@@ -184,6 +186,18 @@ public class AdServiceImpl implements AdService {
 
     private String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
+    }
+    public boolean isAuthorAd(String username, Long adId) {
+        log.info("Использован метод сервиса: {}", MethodLog.getMethodName());
+
+        Optional<Ad> adOptional = adRepository.findById(adId);
+        return adOptional.map(ad -> ad.getAuthor().getEmail().equals(username)).orElse(false);
+    }
+    public boolean isAuthorComment(String username, Long commentId) {
+        log.info("Использован метод сервиса: {}", MethodLog.getMethodName());
+
+        Optional<Comment> commentOptional = commentRepository.findById(commentId);
+        return commentOptional.map(comment -> comment.getAuthor().getEmail().equals(username)).orElse(false);
     }
 
 }
