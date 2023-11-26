@@ -44,7 +44,9 @@ public class UserServiceImpl implements UserService {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findByEmail(auth.getName());
-        return UserMapper.INSTANCE.toUserDTO(user);
+        UserDTO userDTO = UserMapper.INSTANCE.toUserDTO(user);
+        userDTO.setImage("http://localhost:8080" + userDTO.getImage());
+        return userDTO;
     }
     @Override
     public User getCurrentUser(String userName) {

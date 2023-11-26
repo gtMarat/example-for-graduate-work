@@ -184,6 +184,7 @@ public class AdServiceImpl implements AdService {
     }
 
     private String getExtension(String fileName) {
+        log.info("Использован метод сервиса: {}", MethodLog.getMethodName());
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
     public boolean isAuthorAd(String username, Long adId) {
