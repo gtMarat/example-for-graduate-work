@@ -31,7 +31,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
             "/login",
             "/register",
             "/ads",
-            "/image"
+            "/image/*"
     };
 
     @Bean
