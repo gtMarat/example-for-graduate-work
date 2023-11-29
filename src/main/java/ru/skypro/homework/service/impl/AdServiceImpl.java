@@ -72,7 +72,7 @@ public class AdServiceImpl implements AdService {
     }
 
     @Override
-    public AdDTO addAd(CreateOrUpdateAdDTO createOrUpdateAdDTO, MultipartFile image){
+    public AdDTO addAd(CreateOrUpdateAdDTO createOrUpdateAdDTO, MultipartFile image) {
         log.info("Использован метод сервиса: {}", MethodLog.getMethodName());
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -88,12 +88,12 @@ public class AdServiceImpl implements AdService {
             photoAd.setFileSize(image.getSize());
             photoAd.setMediaType(image.getContentType());
             photoAd = photoAdRepository.save(photoAd);
-            uploadPhotoAdd(filePath,image);
+            uploadPhotoAdd(filePath, image);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 //        photoAd.setAd(ad);
-        ad.setImage("/"+photoDir+"/"+photoAd.getId());
+        ad.setImage("/" + photoDir + "/" + photoAd.getId());
         ad.setPhotoAd(photoAd);
         return AdMapper.INSTANCE.adToAdDTO(adRepository.save(ad));
     }
@@ -153,19 +153,19 @@ public class AdServiceImpl implements AdService {
 
         Ad ad = adRepository.findById(adId).orElseThrow(AdNotFoundException::new);
 
-            Path filePath;
-            PhotoAd photoAd = new PhotoAd();
-            try {
-                filePath = Path.of(photoDir, ad.getTitle() + "." + getExtension(Objects.requireNonNull(image.getOriginalFilename())));
-                uploadPhotoAdd(filePath, image);
-                photoAd.setFilePath(filePath.toString());
-                photoAd.setFileSize(image.getSize());
-                photoAd.setMediaType(image.getContentType());
-                photoAd = photoAdRepository.save(photoAd);
+        Path filePath;
+        PhotoAd photoAd = new PhotoAd();
+        try {
+            filePath = Path.of(photoDir, ad.getTitle() + "." + getExtension(Objects.requireNonNull(image.getOriginalFilename())));
+            uploadPhotoAdd(filePath, image);
+            photoAd.setFilePath(filePath.toString());
+            photoAd.setFileSize(image.getSize());
+            photoAd.setMediaType(image.getContentType());
+            photoAd = photoAdRepository.save(photoAd);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ad.setImage("/"+photoDir+"/"+photoAd.getId());
+        ad.setImage("/" + photoDir + "/" + photoAd.getId());
         ad.setPhotoAd(photoAd);
         return adRepository.save(ad).getImage();
     }
@@ -229,13 +229,15 @@ public class AdServiceImpl implements AdService {
         return CommentMapper.INSTANCE.toCommentDTO(commentRepository.save(comment), user);
     }
 
-
+    @Override
     public boolean isAuthorAd(String username, Long adId) {
         log.info("Использован метод сервиса: {}", MethodLog.getMethodName());
 
         Ad ad = adRepository.findById(adId).orElseThrow(AdNotFoundException::new);
         return ad.getAuthor().getEmail().equals(username);
     }
+
+    @Override
     public boolean isAuthorComment(String username, Long commentId) {
         log.info("Использован метод сервиса: {}", MethodLog.getMethodName());
 

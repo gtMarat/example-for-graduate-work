@@ -2,8 +2,8 @@ package ru.skypro.homework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.Size;
 
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -30,7 +30,7 @@ public class NewPasswordDTO {
   */
   @ApiModelProperty(value = "текущий пароль")
 
-@Size(min = 8, max = 16) 
+@Size(min = 8, max = 16)
   public String getCurrentPassword() {
     return currentPassword;
   }

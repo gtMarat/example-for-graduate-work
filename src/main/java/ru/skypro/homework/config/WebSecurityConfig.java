@@ -2,18 +2,20 @@ package ru.skypro.homework.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
 
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @Configuration
+
 public class WebSecurityConfig implements WebMvcConfigurer {
 
 //    @Override
@@ -31,7 +33,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
             "/login",
             "/register",
             "/ads",
-            "/image/*"
+            "/images/**"
     };
 
     @Bean
@@ -41,9 +43,9 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 .authorizeHttpRequests(
                         authorization ->
                                 authorization
-                                        .mvcMatchers(AUTH_WHITELIST)
+                                        .requestMatchers(AUTH_WHITELIST)
                                         .permitAll()
-                                        .mvcMatchers("/ads/**", "/users/**")
+                                        .requestMatchers("/ads/**", "/users/**")
                                         .authenticated())
                 .cors()
                 .and()

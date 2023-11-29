@@ -29,4 +29,8 @@ public interface AdService {
     Void deleteComment(Long adId, Long commentId);
 
     CommentDTO patchComment(Long adId, Long commentId, CreateOrUpdateCommentDTO createOrUpdateCommentDTO);
+
+    boolean isAuthorAd(String username, Long adId);
+
+    boolean isAuthorComment(String username, Long commentId);
 }

@@ -2,10 +2,11 @@ package ru.skypro.homework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.Email;
 import ru.skypro.homework.model.Role;
 
 
-import javax.validation.constraints.Email;
+
 import java.util.Objects;
 
 /**

@@ -2,9 +2,9 @@ package ru.skypro.homework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -27,7 +27,7 @@ public class CreateOrUpdateCommentDTO {
   @ApiModelProperty(required = true, value = "текст комментария")
   @NotNull
 
-@Size(min = 8, max = 64) 
+@Size(min = 8, max = 64)
   public String getText() {
     return text;
   }

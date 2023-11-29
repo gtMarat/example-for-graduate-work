@@ -3,10 +3,11 @@ package ru.skypro.homework.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
+import jakarta.validation.Valid;
 import ru.skypro.homework.model.Ad;
 
 
-import javax.validation.Valid;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

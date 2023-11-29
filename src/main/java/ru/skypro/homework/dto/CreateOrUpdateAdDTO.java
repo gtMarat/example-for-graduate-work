@@ -2,10 +2,10 @@ package ru.skypro.homework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -33,7 +33,7 @@ public class CreateOrUpdateAdDTO {
   */
   @ApiModelProperty(value = "заголовок объявления")
 
-@Size(min = 4, max = 32) 
+@Size(min = 4, max = 32)
   public String getTitle() {
     return title;
   }
@@ -55,7 +55,7 @@ public class CreateOrUpdateAdDTO {
   */
   @ApiModelProperty(value = "цена объявления")
 
-@Min(0) @Max(10000000) 
+@Min(0) @Max(10000000)
   public Integer getPrice() {
     return price;
   }

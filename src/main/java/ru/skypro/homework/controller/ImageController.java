@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import ru.skypro.homework.service.ImageService;
 
-import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 
@@ -22,7 +22,7 @@ public class ImageController {
     public ImageController(ImageService imageService) {
         this.imageService = imageService;
     }
-    @GetMapping(value = "/image/{id}",
+    @GetMapping(value = "/images/{id}",
             produces = {MediaType.IMAGE_PNG_VALUE,
                     MediaType.IMAGE_JPEG_VALUE,
                     MediaType.IMAGE_GIF_VALUE, "image/*"})

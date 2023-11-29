@@ -2,9 +2,9 @@ package ru.skypro.homework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -32,7 +32,7 @@ public class UpdateUserDTO {
   */
   @ApiModelProperty(value = "имя пользователя")
 
-@Size(min = 3, max = 10) 
+@Size(min = 3, max = 10)
   public String getFirstName() {
     return firstName;
   }
@@ -72,7 +72,7 @@ public class UpdateUserDTO {
   */
   @ApiModelProperty(value = "телефон пользователя")
 
-@Pattern(regexp = "\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}") 
+@Pattern(regexp = "\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}")
   public String getPhone() {
     return phone;
   }
