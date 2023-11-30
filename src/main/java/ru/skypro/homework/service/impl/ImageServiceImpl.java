@@ -10,9 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.homework.exception.PhotoAdNotFoundException;
-import ru.skypro.homework.model.Images;
-import ru.skypro.homework.repository.ImagesRepository;
-import ru.skypro.homework.service.ImagesService;
+import ru.skypro.homework.model.Image;
+import ru.skypro.homework.repository.ImageRepository;
+import ru.skypro.homework.service.ImageService;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -24,13 +24,13 @@ import static java.nio.file.StandardOpenOption.CREATE_NEW;
 @Slf4j
 @Service
 @Data
-public class ImagesServiceImpl implements ImagesService {
-    private final ImagesRepository imagesRepository;
+public class ImageServiceImpl implements ImageService {
+    private final ImageRepository imagesRepository;
     @Value("${path.to.images.folder}")
     private String photoAvatar;
     @Override
     public ResponseEntity<byte[]> getImage(Long id) throws IOException {
-        Images images = imagesRepository.findById(id).orElseThrow(PhotoAdNotFoundException::new);
+        Image images = imagesRepository.findById(id).orElseThrow(PhotoAdNotFoundException::new);
         byte[] imageBytes = images.getData();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(images.getMediaType()));
@@ -38,11 +38,11 @@ public class ImagesServiceImpl implements ImagesService {
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(imageBytes);
     }
     @Override
-    public Images addPhoto (String path, MultipartFile image){
+    public Image addPhoto (String path, MultipartFile image){
         Path filePath = Path.of(photoAvatar, path + "." + getExtension(Objects.requireNonNull(image.getOriginalFilename())));
-        Images images;
+        Image images;
         try {
-            images = new Images();
+            images = new Image();
             uploadPhotoAdd(filePath,image);
             images.setFilePath(filePath.toString());
             images.setFileSize(image.getSize());

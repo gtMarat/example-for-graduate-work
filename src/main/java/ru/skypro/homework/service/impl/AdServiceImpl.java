@@ -20,10 +20,10 @@ import ru.skypro.homework.model.Comment;
 import ru.skypro.homework.model.User;
 import ru.skypro.homework.repository.AdRepository;
 import ru.skypro.homework.repository.CommentRepository;
-import ru.skypro.homework.repository.ImagesRepository;
+import ru.skypro.homework.repository.ImageRepository;
 import ru.skypro.homework.repository.UserRepository;
 import ru.skypro.homework.service.AdService;
-import ru.skypro.homework.service.ImagesService;
+import ru.skypro.homework.service.ImageService;
 import ru.skypro.homework.utils.MethodLog;
 
 import java.util.ArrayList;
@@ -36,13 +36,13 @@ import java.util.Optional;
 public class AdServiceImpl implements AdService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
-    private final ImagesService imagesService;
-    private final ImagesRepository imagesRepository;
+    private final ImageService imagesService;
+    private final ImageRepository imagesRepository;
     private final AdRepository adRepository;
     @Value(value = "${path.to.images.folder}")
     private String photoAvatar;
 
-    public AdServiceImpl(CommentRepository commentRepository, UserRepository userRepository, ImagesService imagesService, ImagesRepository imagesRepository, AdRepository adRepository) {
+    public AdServiceImpl(CommentRepository commentRepository, UserRepository userRepository, ImageService imagesService, ImageRepository imagesRepository, AdRepository adRepository) {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
         this.imagesService = imagesService;

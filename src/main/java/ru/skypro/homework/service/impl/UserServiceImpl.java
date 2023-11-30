@@ -17,7 +17,7 @@ import ru.skypro.homework.exception.UserNotFoundException;
 import ru.skypro.homework.mapper.UserMapper;
 import ru.skypro.homework.model.User;
 import ru.skypro.homework.repository.UserRepository;
-import ru.skypro.homework.service.ImagesService;
+import ru.skypro.homework.service.ImageService;
 import ru.skypro.homework.service.UserService;
 import ru.skypro.homework.utils.MethodLog;
 
@@ -28,12 +28,12 @@ import ru.skypro.homework.utils.MethodLog;
 public class UserServiceImpl implements UserService {
     private final PasswordEncoder encoder;
     private final UserRepository userRepository;
-    private final ImagesService photoAdService;
+    private final ImageService photoAdService;
 
     @Value("${path.to.images.folder}")
     private String photoAvatar;
 
-    public UserServiceImpl(PasswordEncoder encoder, UserRepository userRepository, ImagesService photoAdService) {
+    public UserServiceImpl(PasswordEncoder encoder, UserRepository userRepository, ImageService photoAdService) {
         this.encoder = encoder;
         this.userRepository = userRepository;
 

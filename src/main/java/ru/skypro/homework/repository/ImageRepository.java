@@ -2,11 +2,11 @@ package ru.skypro.homework.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.Nullable;
-import ru.skypro.homework.model.Images;
+import ru.skypro.homework.model.Image;
 
 import java.util.Optional;
 
-public interface ImagesRepository extends JpaRepository<Images, Long> {
+public interface ImageRepository extends JpaRepository<Image, Long> {
 
-    Optional<Images> findById(@Nullable Long id);
+    Optional<Image> findById(@Nullable Long id);
 }
