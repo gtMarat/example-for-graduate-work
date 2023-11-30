@@ -25,7 +25,7 @@ public class Ad {
     private Integer price;
 
     @Column(nullable = false)
-    private String images; // Ссылка на изображение, в реальности это может быть URL до изображения
+    private String imagePath; // Ссылка на изображение, в реальности это может быть URL до изображения
 
     @Column(nullable = false, length = 64)
     private String description;

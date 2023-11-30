@@ -72,7 +72,7 @@ public class AdServiceImpl implements AdService {
         ad.setAuthor(user);
         String path = createOrUpdateAdDTO.getTitle();
 //        photoAd.setAd(ad);
-        ad.setImages("/"+photoAvatar+"/"+ imageService.addPhoto(path, image).getId());
+        ad.setImagePath("/"+photoAvatar+"/"+ imageService.addPhoto(path, image).getId());
         ad.setImage(imageService.addPhoto(path, image));
         return AdMapper.INSTANCE.adToAdDTO(adRepository.save(ad));
     }
@@ -132,9 +132,9 @@ public class AdServiceImpl implements AdService {
 
         Ad ad = adRepository.findById(adId).orElseThrow(AdNotFoundException::new);
         String path = ad.getTitle();
-        ad.setImages("/"+photoAvatar+"/"+imageService.addPhoto(path, image).getId());
+        ad.setImagePath("/"+photoAvatar+"/"+imageService.addPhoto(path, image).getId());
         ad.setImage(imageService.addPhoto(path, image));
-        return adRepository.save(ad).getImages();
+        return adRepository.save(ad).getImagePath();
     }
 
     @Override
