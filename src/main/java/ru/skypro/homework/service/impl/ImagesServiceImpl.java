@@ -40,25 +40,20 @@ public class ImagesServiceImpl implements ImagesService {
     @Override
     public Images addPhoto (String path, MultipartFile image){
         Path filePath = Path.of(photoAvatar, path + "." + getExtension(Objects.requireNonNull(image.getOriginalFilename())));
-        Images photoAd;
+        Images images;
         try {
-            photoAd = new Images();
+            images = new Images();
             uploadPhotoAdd(filePath,image);
-            photoAd.setFilePath(filePath.toString());
-            photoAd.setFileSize(image.getSize());
-            photoAd.setMediaType(image.getContentType());
-            photoAd.setData(image.getBytes());
-            photoAd = imagesRepository.save(photoAd);
-            /*if (photoAdRepository.findById(photoAd.getId() - 1).isPresent()
-                    && Objects.equals(photoAdRepository.findById(photoAd.getId() - 1).get().getFilePath(), filePath.toString())
-            ){
+            images.setFilePath(filePath.toString());
+            images.setFileSize(image.getSize());
+            images.setMediaType(image.getContentType());
+            images.setData(image.getBytes());
+            images = imagesRepository.save(images);
 
-                photoAdRepository.deleteById(photoAd.getId() - 1);
-            }*/
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return  photoAd;
+        return  images;
     }
     public void uploadPhotoAdd(Path filePath, MultipartFile image) throws IOException {
         Files.createDirectories(filePath.getParent());
