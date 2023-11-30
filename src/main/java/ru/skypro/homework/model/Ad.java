@@ -24,18 +24,18 @@ public class Ad {
     @Column(nullable = false)
     private Integer price;
 
+    @Column(nullable = false)
+    private String images; // Ссылка на изображение, в реальности это может быть URL до изображения
+
     @Column(nullable = false, length = 64)
     private String description;
-
-    @Column(nullable = false)
-    private String image; // Ссылка на изображение, в реальности это может быть URL до изображения
 
     @OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @OneToOne
     @JsonBackReference
-    @JoinColumn(name = "photo_Ad_id")
-    private Image images;
+    @JoinColumn(name = "image_id")
+    private Image image;
 
 }

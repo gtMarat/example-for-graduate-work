@@ -36,17 +36,17 @@ import java.util.Optional;
 public class AdServiceImpl implements AdService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
-    private final ImageService imagesService;
-    private final ImageRepository imagesRepository;
+    private final ImageService imageService;
+    private final ImageRepository imageRepository;
     private final AdRepository adRepository;
     @Value(value = "${path.to.images.folder}")
     private String photoAvatar;
 
-    public AdServiceImpl(CommentRepository commentRepository, UserRepository userRepository, ImageService imagesService, ImageRepository imagesRepository, AdRepository adRepository) {
+    public AdServiceImpl(CommentRepository commentRepository, UserRepository userRepository, ImageService imageService, ImageRepository imageRepository, AdRepository adRepository) {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
-        this.imagesService = imagesService;
-        this.imagesRepository = imagesRepository;
+        this.imageService = imageService;
+        this.imageRepository = imageRepository;
         this.adRepository = adRepository;
     }
 
@@ -72,8 +72,8 @@ public class AdServiceImpl implements AdService {
         ad.setAuthor(user);
         String path = createOrUpdateAdDTO.getTitle();
 //        photoAd.setAd(ad);
-        ad.setImage("/"+photoAvatar+"/"+ imagesService.addPhoto(path, image).getId());
-        ad.setImages(imagesService.addPhoto(path, image));
+        ad.setImages("/"+photoAvatar+"/"+ imageService.addPhoto(path, image).getId());
+        ad.setImage(imageService.addPhoto(path, image));
         return AdMapper.INSTANCE.adToAdDTO(adRepository.save(ad));
     }
 
@@ -90,9 +90,9 @@ public class AdServiceImpl implements AdService {
     public Void deleteAd(Long adId) {
         log.info("Использован метод сервиса: {}", MethodLog.getMethodName());
 
-        Long photoId = adRepository.findById(adId).orElseThrow(AdNotFoundException::new).getImages().getId();
+        Long photoId = adRepository.findById(adId).orElseThrow(AdNotFoundException::new).getImage().getId();
         adRepository.deleteById(adId);
-        imagesRepository.deleteById(photoId);
+        imageRepository.deleteById(photoId);
         commentRepository.deleteAllByAd_Id(adId);
         return null;
     }
@@ -132,9 +132,9 @@ public class AdServiceImpl implements AdService {
 
         Ad ad = adRepository.findById(adId).orElseThrow(AdNotFoundException::new);
         String path = ad.getTitle();
-        ad.setImage("/"+photoAvatar+"/"+imagesService.addPhoto(path, image).getId());
-        ad.setImages(imagesService.addPhoto(path, image));
-        return adRepository.save(ad).getImage();
+        ad.setImages("/"+photoAvatar+"/"+imageService.addPhoto(path, image).getId());
+        ad.setImage(imageService.addPhoto(path, image));
+        return adRepository.save(ad).getImages();
     }
 
     @Override

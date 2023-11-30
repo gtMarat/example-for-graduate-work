@@ -23,20 +23,28 @@
 - [Features](#features)
 
 ## Installation
-*Для функционирования кода необходимо запустить образ фронта в Docker*
+*Для запуска приложения вам потребуется:
+
+1. Установить Docker и Docker Compose.
+2. Склонировать репозиторий.
+3. Запустить Docker Compose, выполнив docker-compose up в корневой директории проекта.
+
+После выполнения этих шагов ваше приложение будет доступно по адресу [http://localhost:8080](http://localhost:8080).
+*
 
 ## Usage
-В приложении использовались:
-- [Spring Boot](https://spring.io/projects/spring-boot)
-- [Hibernate](https://hibernate.org/)
-- [Docker](https://www.docker.com/)
-- [Postgresql](https://www.postgresql.org/)
-- [H2database](https://h2database.github.io/html/main.html)
-- [Liquid Base](https://www.liquibase.org/)
-- [Lombok](https://www.oracle.com/corporate/features/project-lombok.html)
-- [Swagger](https://docs.swagger.io/spec.html)
-- [OpenAPI](https://spec.openapis.org/oas/latest.html)
-- [Mapstruct](https://mapstruct.org/)
+Проект использует следующие технологии и библиотеки:
+
+- [Spring Boot](https://spring.io/projects/spring-boot): Фреймворк для создания веб-приложений на языке Java.
+- [Hibernate](https://hibernate.org/): Фреймворк для работы с базой данных.
+- [Docker](https://www.docker.com/): Платформа для разработки, доставки и выполнения приложений в контейнерах.
+- [Postgresql](https://www.postgresql.org/): Система управления реляционными базами данных.
+- [H2database](https://h2database.github.io/html/main.html): Встроенная база данных для разработки и тестирования.
+- [Liquid Base](https://www.liquibase.org/): Инструмент для управления схемой базы данных.
+- [Lombok](https://www.oracle.com/corporate/features/project-lombok.html): Библиотека, упрощающая написание кода.
+- [Swagger](https://docs.swagger.io/spec.html) и [OpenAPI](https://spec.openapis.org/oas/latest.html): Инструменты для создания и документирования API.
+- [Mapstruct](https://mapstruct.org/): Фреймворк для упрощения маппинга объектов.
+
 
 ## Credits
 Наша Команда:
